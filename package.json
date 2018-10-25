@@ -1,0 +1,19 @@
+{
+  "name": "hackaton-backend-nodejs",
+  "version": "1.0.0",
+  "description": "![travis-ci](https://travis-ci.com/Guillem96/express-hackaton-template.svg?branch=master)",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js",
+    "nodem-start": "nodemon server.js"
+  },
+  "author": "Korakk8",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.6",
+    "nodemon": "^1.18.4"
+  }
+}
