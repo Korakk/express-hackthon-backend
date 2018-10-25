@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 //MongoDB connection PATH
-mongoose.connect("mongodb+srv://admin:admin@hack-db-w4r08.mongodb.net/test?retryWrites=true", {
+mongoose.connect(process.env.MONGO_DB_URL, {
     useNewUrlParser: true
 });
 
