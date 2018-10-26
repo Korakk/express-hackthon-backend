@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+const userRoutes = require("./src/api/routes/users.routes");
+
 //MongoDB connection PATH
 mongoose.connect(process.env.MONGO_DB_URL, {
     useNewUrlParser: true
@@ -29,6 +31,8 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+app.use("/users/", userRoutes);
 
 //Handle all requests errors here, because if I arrive here
 // it means that any request has matched with the other file ones.
