@@ -17,6 +17,8 @@ const UserSchema = mongoose.Schema({
     //Email validation regex.
     match: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   },
+  userImage: { type: String, required:true},
+
   created_at: {
     type: Date,
     default: new Date()

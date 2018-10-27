@@ -7,7 +7,7 @@ const User = require('../models/users.model');
 var UserController = {
   get_all_users: (req,res) => {
     User.find()
-    .select('username email created_at')
+    .select('username email userImage created_at')
     .exec()
     .then(result => {
       res.status(200).json({
@@ -16,6 +16,7 @@ var UserController = {
             _id: user._id,
             username: user.username,
             email: user.email,
+            userImage: user.userImage,
             created_at: user.created_at,
             
             request: {
@@ -37,7 +38,7 @@ var UserController = {
   get_user: (req, res) => {
     const id= req.params.userId;
     User.findById(id)
-    .select("username email created_at")
+    .select("username email userImage created_at")
     .exec()
     .then(user => {
       if(!user){
@@ -91,13 +92,22 @@ var UserController = {
                   username: req.body.username,
                   password: hash,
                   email: req.body.email,
+                  userImage: req.file.path,
                   created_at: req.body.created_at
                 });
                 user.save()
                 .then(result => {
-                  console.log(result);
                   res.status(201).json({
-                    message:"User " + user.username + " created correctly"
+                    message:"User " + user.username + " created correctly",
+
+                    login_request: {
+                      type: "POST",
+                      url: "http://localhost:3000/users/login"
+                    },
+                    get_request: {
+                      type: "GET",
+                      url: "http://localhost:3000/users/" + user._id
+                    }
                   });
                 })
               }

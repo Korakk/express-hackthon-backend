@@ -13,6 +13,7 @@ mongoose.connect(process.env.MONGO_DB_URL, {
 mongoose.Promise = global.Promise;//Supresses a warning about promises.
 mongoose.set('useCreateIndex', true); //Suppresses the warning about collection.ensureIndex
 
+app.use("/imageUploads", express.static('imageUploads'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json()); 
 
