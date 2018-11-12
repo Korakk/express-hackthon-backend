@@ -7,7 +7,7 @@ const User = require('../models/users.model');
 var UserController = {
   get_all_users: (req,res) => {
     User.find()
-    .select('username email userImage created_at')
+    .select('username displayName email userImage created_at')
     .exec()
     .then(result => {
       res.status(200).json({
@@ -17,6 +17,9 @@ var UserController = {
             username: user.username,
             email: user.email,
             userImage: user.userImage,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            displayName: user.displayName,
             created_at: user.created_at,
             
             request: {
@@ -38,7 +41,7 @@ var UserController = {
   get_user: (req, res) => {
     const id= req.params.userId;
     User.findById(id)
-    .select("username email userImage created_at")
+    .select("username displayName email userImage created_at")
     .exec()
     .then(user => {
       if(!user){
@@ -92,6 +95,9 @@ var UserController = {
                   username: req.body.username,
                   password: hash,
                   email: req.body.email,
+                  firstName: req.body.firstName,
+                  lastName: req.body.lastName,
+                  displayName: req.body.displayName,
                   userImage: req.file.path,
                   created_at: req.body.created_at
                 });
@@ -156,7 +162,9 @@ var UserController = {
               }
             );
             return res.status(200).json({
-              message: "Login successful",
+              message: "Thanks for login In" + displayName,
+              user: user,
+              displayName: displayName,
               token: token
             });
           }
@@ -178,7 +186,7 @@ var UserController = {
     .exec()
     .then(result => {
       res.status(200).json({
-        message: "User deleted succesfully"
+        message: "User" + username + "deleted succesfully"
       });
     })
     .catch(err => {

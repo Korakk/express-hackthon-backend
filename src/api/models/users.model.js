@@ -18,6 +18,9 @@ const UserSchema = mongoose.Schema({
     match: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   },
   userImage: { type: String, required:true},
+  firstName:{type: String, default: "John"},
+  lastName:{type: String, default: "Doe"},
+  displayName:{type:String, default: "John Doe"},
 
   created_at: {
     type: Date,
