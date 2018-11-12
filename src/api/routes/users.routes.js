@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
     cb(null,'./imageUploads');//null makes that non-passing this won't throw error.
   },
   filename: function(req, file, cb) {
-    cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
+    cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname + UserController.user.displayName);
   }
 });
 //Check if its an accepted image format.
