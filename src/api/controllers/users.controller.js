@@ -190,7 +190,8 @@ var UserController = {
       });
     })
     .catch(err => {
-      error: err
+      res.status(500).json({
+        error: err
     });
   }
 
